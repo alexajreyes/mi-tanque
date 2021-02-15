@@ -1,39 +1,48 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { ReactComponent as TankIcon } from 'assets/tank.svg'
-import { AppContext } from 'store'
+
 import {
-  TankContainer,
-  TankCapacity,
-  TankDiameter,
-  TankLength,
-  HorizontalLine,
-  VerticalLine,
+    TankContainer,
+    TankCapacity,
+    TankDiameter,
+    TankLength,
+    HorizontalLine,
+    VerticalLine,
+    Wrapper,
+    Caption,
 } from './styles'
 
 //Import icons
 
-export default function Tank({ capacity, diameter, length }) {
-  const { isDarkModeActive } = useContext(AppContext)
+export default function Tank({
+    capacity,
+    diameter,
+    length,
+    lineWidth = '1px',
+}) {
+    return (
+        <Wrapper>
+            <TankDiameter>
+                <VerticalLine lineWidth={lineWidth} top={true}></VerticalLine>
+                <Caption>{diameter}</Caption>
+                <VerticalLine lineWidth={lineWidth} top={false}></VerticalLine>
+            </TankDiameter>
+            <TankContainer>
+                <TankIcon />
+                <TankCapacity>{capacity}</TankCapacity>
+            </TankContainer>
 
-  return (
-    <TankContainer>
-      <TankCapacity>{capacity}</TankCapacity>
-
-      <TankDiameter>
-        <VerticalLine top={true}></VerticalLine>
-        <span>{diameter}</span>
-        <VerticalLine top={false}></VerticalLine>
-      </TankDiameter>
-
-      <TankIcon fill={isDarkModeActive ? '#FFFFFF' : '#142850'} />
-
-      <TankLength>
-        <HorizontalLine right={false}></HorizontalLine>
-        <span>{length}</span>
-        <HorizontalLine right={true}></HorizontalLine>
-      </TankLength>
-
-      <article></article>
-    </TankContainer>
-  )
+            <TankLength>
+                <HorizontalLine
+                    lineWidth={lineWidth}
+                    right={false}
+                ></HorizontalLine>
+                <Caption>{length}</Caption>
+                <HorizontalLine
+                    lineWidth={lineWidth}
+                    right={true}
+                ></HorizontalLine>
+            </TankLength>
+        </Wrapper>
+    )
 }
