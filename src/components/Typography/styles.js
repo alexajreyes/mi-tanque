@@ -31,7 +31,18 @@ export const Title3 = styled.h3`
     font-size: 16px;
     color: ${({ color, theme }) => (color ? color : theme.primaryText)};
 `
-export const Link = styled.h4`
+export const Link = styled.h3`
+    ${Primitive}
+    font-weight: bold;
+    font-size: 16px;
+    color: ${({ color, theme }) => (color ? color : theme.accent)};
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+`
+
+export const Link2 = styled.h4`
     ${Primitive}
     font-weight: bold;
     font-size: 14px;

@@ -3,7 +3,12 @@ import Typography from 'components/Typography'
 import Tank from 'components/Tank'
 import { Card } from './styles.js'
 
-export default function CardOfTank({ capacity, diameter, length }) {
+export default function CardOfTank({
+    capacity,
+    diameter,
+    length,
+    ctaText = 'Seleccionar',
+}) {
     return (
         <Card>
             <Tank capacity={capacity} diameter={diameter} length={length} />
@@ -24,7 +29,7 @@ export default function CardOfTank({ capacity, diameter, length }) {
                     variant="body"
                     mb="8px"
                 />
-                <Typography value="Cambiar tanque" variant="link" />
+                <Typography value={ctaText} variant="link2" />
             </div>
         </Card>
     )
