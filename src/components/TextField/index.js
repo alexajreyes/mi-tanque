@@ -1,19 +1,25 @@
 import React from 'react'
 import { MdSearch as SearchIcon } from 'react-icons/md'
-import { Wrapper, TextFieldContainer } from './styles'
+import { Wrapper, TextFieldContainer, Label } from './styles'
+import randomKey from 'utils/randomKey'
 
 export default function TextField({
-    label = null,
-    placeholder,
-    search = false,
+  label = null,
+  placeholder,
+  search = false,
+  Icon = null,
+  rest,
 }) {
-    return (
-        <Wrapper>
-            {label && <label htmlFor="">{label}</label>}
-            <TextFieldContainer>
-                <input type="text" placeholder={placeholder} />
-                <SearchIcon size={22} />
-            </TextFieldContainer>
-        </Wrapper>
-    )
+  const key = randomKey()
+
+  return (
+    <Wrapper>
+      {label && <Label htmlFor={key}>{label}</Label>}
+      <TextFieldContainer>
+        <input type="text" placeholder={placeholder} id={key} {...rest} />
+        {search && !Icon && <SearchIcon size={24} />}
+        {Icon && <Icon size={24} />}
+      </TextFieldContainer>
+    </Wrapper>
+  )
 }

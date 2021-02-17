@@ -6,14 +6,10 @@ export const Header = styled.header`
   align-items: center;
   gap: 16px;
   padding: 8px 16px;
-  position: relative;
+`
 
-  /*&:after {
-    content: '';
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    height: 1px;
-    background-color: ${({ theme }) => theme.secondaryText};
-  }*/
+export const Logo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `
