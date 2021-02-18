@@ -33,7 +33,7 @@ export const TextFieldContainer = styled.fieldset`
     input {
         border: none;
         outline: none;
-        padding: 0.5rem;
+        padding: 8px;
         color: ${({ theme }) => theme.primaryText};
         background-color: transparent;
         width: 100%;

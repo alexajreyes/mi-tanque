@@ -34,6 +34,7 @@ const Primitive = css`
     border: none;
     outline: none;
     padding: 8px;
+    height: 48px;
     cursor: pointer;
     transition: all 0.25s;
     position: relative;

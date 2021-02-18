@@ -10,24 +10,42 @@ const Tabs = {
 }
 
 export default function NavBar() {
-    const [tabActive, setTabActive] = useState(Tabs.METER)
+    const [tab, setTab] = useState(Tabs.METER)
 
-    const handleClick = tab => {
-        setTabActive(tab)
+    const handleClickTab = _tab => {
+        setTab(_tab)
+    }
+
+    /**
+     * Función que realiza las validaciones para mostrar el tab correspondiente(Historial/ Medicion)
+     * @param {Number} tabIndex - Número del tab a verificar
+     */
+
+    const checkActiveTab = tabIndex => {
+        switch (tabIndex) {
+            case Tabs.HISTORY:
+                return tab === Tabs.HISTORY
+
+            case Tabs.METER:
+                return tab === Tabs.METER
+
+            default:
+                return false
+        }
     }
 
     return (
         <Nav>
             <NavItem
-                onClick={() => handleClick(Tabs.HISTORY)}
-                active={tabActive === Tabs.HISTORY ? true : false}
+                onClick={() => handleClickTab(Tabs.HISTORY)}
+                active={checkActiveTab(Tabs.HISTORY)}
             >
                 <HistoryIcon size={32} />
                 <span>Historial</span>
             </NavItem>
             <NavItem
-                onClick={() => handleClick(Tabs.METER)}
-                active={tabActive === Tabs.METER ? true : false}
+                onClick={() => handleClickTab(Tabs.METER)}
+                active={checkActiveTab(Tabs.METER)}
             >
                 <MeterIcon size={32} />
                 <span>Medición</span>

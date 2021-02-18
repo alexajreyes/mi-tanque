@@ -21,4 +21,18 @@ export const Wrapper = styled.div`
     width: ${tankSize};
     height: ${tankSize};
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+`
+
+export const FuelLevel = styled.div`
+    align-items: center;
+    color: ${({ theme }) => theme.textSecondary};
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+    position: absolute;
+    z-index: 99;
 `
