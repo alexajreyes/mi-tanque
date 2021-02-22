@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Route } from 'wouter'
 import Home from 'pages/Home'
+import History from 'pages/History'
 import TankSearch from 'pages/TankSearch'
 import AddTank from 'pages/AddTank'
 import { ThemeProvider } from 'styled-components'
@@ -21,7 +22,7 @@ function App() {
         <Route path="/" default component={Home} />
         <Route path="/tanques" default component={TankSearch} />
         <Route path="/tanques/crear" default component={AddTank} />
-        <Route path="/history" component={Home} />
+        <Route path="/history" component={History} />
       </ThemeProvider>
     </div>
   )

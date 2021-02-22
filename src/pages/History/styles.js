@@ -15,9 +15,19 @@ export const Wrapper = styled.section`
   max-width: 100%;
   padding: 16px;
 `
-export const Results = styled.section`
-  padding: 16px 0;
-  display: flex;
-  justify-content: space-between;
+
+export const FilterContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 65px;
   gap: 16px;
+`
+
+export const IconContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.card};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
