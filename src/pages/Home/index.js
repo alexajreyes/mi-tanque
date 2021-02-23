@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Stepper from 'components/Stepper'
 import TextGroup from 'components/TextGroup'
 import TankAnimation from 'components/TankAnimation'
 import { Container, Wrapper, Results, NavBarContainer } from './styles'
 import Typography from 'components/Typography'
 import NavBar from 'components/NavBar'
+import { AppContext } from 'store'
+import { useLocation } from 'wouter'
 
 export default function Home() {
+  const { defaultTank } = useContext(AppContext)
+  const [_, setLocation] = useLocation()
+
   const [results, seResults] = useState({
     inches: 0,
     gallons: 0,
@@ -17,6 +22,13 @@ export default function Home() {
   const onCalcFuelLevel = results => {
     seResults(results)
   }
+
+  useEffect(() => {
+    console.log()
+    if (Object.keys(defaultTank).length < 1) {
+      setLocation('/tanques')
+    }
+  }, [])
 
   return (
     <Container>
