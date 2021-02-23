@@ -15,7 +15,7 @@ import {
 } from './styles'
 
 function History() {
-  const [calendarIsVisible, setCalendarIsVisible] = useState(true)
+  const [calendarIsVisible, setCalendarIsVisible] = useState(false)
 
   const showCalendar = () => setCalendarIsVisible(true)
 
