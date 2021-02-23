@@ -13,7 +13,6 @@ import AppBar from 'components/AppBar'
 function App() {
   const { theme } = useContext(AppContext)
 
-  console.log(theme)
   return (
     <div>
       <ThemeProvider theme={theme}>

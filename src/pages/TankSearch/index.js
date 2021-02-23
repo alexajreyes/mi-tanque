@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useLocation } from 'wouter'
 import CardOfTank from 'components/CardOfTank'
 import Typography from 'components/Typography'
@@ -6,44 +6,48 @@ import { Wrapper, ListOfTanks, LinkContainer } from './styles'
 import TextField from 'components/TextField'
 import Button from 'components/Button'
 import useTanks from 'hooks/useTanks'
+import { AppContext } from 'store'
 
 export default function TankSearch() {
-    const { tanks } = useTanks()
+  const { addTankForDefault } = useContext(AppContext)
 
-    const [_, setLocation] = useLocation()
+  const { tanks } = useTanks()
 
-    const selectTank = () => {
-        setLocation('/')
-    }
+  const [_, setLocation] = useLocation()
 
-    return (
-        <Wrapper>
-            <TextField placeholder="Buscar tanque" search={true} />
+  const selectTank = tank => {
+    addTankForDefault({ tank })
+    setLocation('/')
+  }
 
-            <Typography value="Seleccione su tanque" variant="title2" />
-            <ListOfTanks>
-                {tanks &&
-                    tanks.map(tank => (
-                        <CardOfTank
-                            key={tank.id}
-                            capacity={tank.capacity}
-                            diameter={tank.diameter}
-                            length={tank.length}
-                            ctaText="Seleccionar"
-                            onClick={selectTank}
-                        />
-                    ))}
-            </ListOfTanks>
-            <LinkContainer>
-                <Typography value="¿Tu tanque no aparece?" variant="title3" />
-                <Button
-                    variant="link"
-                    size="medium"
-                    onClick={() => setLocation('/tanques/crear')}
-                >
-                    Agregar tanque
-                </Button>
-            </LinkContainer>
-        </Wrapper>
-    )
+  return (
+    <Wrapper>
+      <TextField placeholder="Buscar tanque" search={true} />
+
+      <Typography value="Seleccione su tanque" variant="title2" />
+      <ListOfTanks>
+        {tanks &&
+          tanks.map(tank => (
+            <CardOfTank
+              key={tank.id}
+              capacity={tank.capacity}
+              diameter={tank.diameter}
+              length={tank.length}
+              ctaText="Seleccionar"
+              onClick={() => selectTank(tank)}
+            />
+          ))}
+      </ListOfTanks>
+      <LinkContainer>
+        <Typography value="¿Tu tanque no aparece?" variant="title3" />
+        <Button
+          variant="link"
+          size="medium"
+          onClick={() => setLocation('/tanques/crear')}
+        >
+          Agregar tanque
+        </Button>
+      </LinkContainer>
+    </Wrapper>
+  )
 }

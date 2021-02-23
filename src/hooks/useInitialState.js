@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { darkTheme, lightTheme } from 'store/initialState'
 import { useLocalStorage } from 'hooks/useLocalStorage'
 
@@ -8,6 +7,8 @@ const useInitialState = () => {
     'isDarkModeActive',
     true
   )
+  //Estado que guarda el tanque seleccionado
+  const [defaultTank, setDefaultTank] = useLocalStorage('defaultTank', {})
 
   const activateDarkMode = () => {
     setTheme(darkTheme)
@@ -19,11 +20,17 @@ const useInitialState = () => {
     setIsDarkModeActive(false)
   }
 
+  const addTankForDefault = ({ tank }) => {
+    setDefaultTank(tank)
+  }
+
   return {
     theme,
     isDarkModeActive,
     activateDarkMode,
     disableDarkMode,
+    addTankForDefault,
+    defaultTank,
   }
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Stepper from 'components/Stepper'
 import TextGroup from 'components/TextGroup'
 import TankAnimation from 'components/TankAnimation'
@@ -7,18 +7,29 @@ import Typography from 'components/Typography'
 import NavBar from 'components/NavBar'
 
 export default function Home() {
+  const [results, seResults] = useState({
+    inches: 0,
+    gallons: 0,
+    liters: 0,
+    fuelHeight: 0,
+  })
+
+  const onCalcFuelLevel = results => {
+    seResults(results)
+  }
+
   return (
     <Container>
       <Wrapper>
-        <Stepper />
+        <Stepper onCalcFuelLevel={onCalcFuelLevel} />
         <Typography value={'Resultados'} variant="title2" mt="32px" />
 
         <Results>
-          <TextGroup label="Pulgadas" value={'8'} />
-          <TextGroup label="Galones" value={'100'} />
-          <TextGroup label="Litros" value={'250'} />
+          <TextGroup label="Pulgadas" value={results.inches} />
+          <TextGroup label="Galones" value={results.gallons} />
+          <TextGroup label="Litros" value={results.liters} />
         </Results>
-        <TankAnimation />
+        <TankAnimation fuelHeight={results.fuelHeight} />
       </Wrapper>
       <NavBarContainer>
         <NavBar />

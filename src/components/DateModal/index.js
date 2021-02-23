@@ -31,8 +31,6 @@ function DateModal({ closeModal, onSelect }) {
       endDate: state[0].endDate,
     }
 
-    console.log(dates)
-
     onSelect(dates)
     closeModal()
   }

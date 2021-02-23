@@ -16,12 +16,13 @@
     "react-scripts": "4.0.2",
     "react-wavify": "^1.5.2",
     "styled-components": "^5.2.1",
+    "sweetalert2": "^10.15.5",
     "web-vitals": "^1.0.1",
     "wouter": "^2.7.3"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI= react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
