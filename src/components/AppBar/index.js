@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { useLocation } from 'wouter'
 //Import icons
 import { ReactComponent as LogoIcon } from 'assets/logo.svg'
 import { FaSun as LightModeIcon } from 'react-icons/fa'
@@ -11,13 +12,17 @@ import Typography from 'components/Typography'
 import { Header, Logo } from './styles'
 
 export default function AppBar() {
+  const [_, setLocation] = useLocation()
+
   const { isDarkModeActive, disableDarkMode, activateDarkMode } = useContext(
     AppContext
   )
 
+  const goToHome = () => setLocation('/')
+
   return (
     <Header>
-      <Logo>
+      <Logo onClick={goToHome}>
         <LogoIcon />
         <Typography ml="8px" variant="title" value="Mi tanque" />
       </Logo>

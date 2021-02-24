@@ -8,8 +8,8 @@ export default function useTank() {
     const { capacity, diameter, length } = tank
 
     createTank({ capacity, diameter, length })
-      .then(() => {
-        onSave()
+      .then(tankAddedID => {
+        onSave(tankAddedID)
       })
       .catch(error => {
         console.error(error)

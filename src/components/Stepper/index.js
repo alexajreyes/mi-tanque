@@ -81,6 +81,7 @@ export default function Stepper({ onCalcFuelLevel }) {
           <Line></Line>
         </BadgeContainer>
         <TextField
+          type="number"
           name="inches"
           placeholder="Ingrese la cantidad de pulgadas"
         />

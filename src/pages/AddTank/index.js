@@ -47,13 +47,13 @@ export default function AddTank() {
       length,
     }
 
-    saveTank(tank, () => {
+    saveTank(tank, tankAddedID => {
       //Limpiar campos
       setCapacity('')
       setDiameter('')
       setLength('')
       //Seleccionar tanque agregado como predeterminado
-      addTankForDefault({ tank })
+      addTankForDefault({ tank: { ...tank, id: tankAddedID } })
       successAlert('Tanque agregado correctamente')
       //Redireccionar a la home
       setLocation('/')
@@ -104,7 +104,7 @@ export default function AddTank() {
 
       <ButtonsContainer>
         <Button
-          mb="16px"
+          mb="8px"
           variant="filled"
           size="large"
           type="submit"

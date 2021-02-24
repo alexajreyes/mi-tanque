@@ -8,6 +8,7 @@ export const Header = styled.header`
 `
 
 export const Logo = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
 `
