@@ -19,5 +19,4 @@ export const Results = styled.section`
   padding: 16px 0;
   display: flex;
   justify-content: space-between;
-  gap: 16px;
 `

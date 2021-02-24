@@ -5,12 +5,12 @@ export const StepContainer = styled.form`
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
 `
 export const Step = styled.div`
+  margin-bottom: 8px;
   display: grid;
   grid-template-columns: ${badgeSize} 1fr;
-  gap: 8px;
+  grid-gap: 8px;
 `
 export const BadgeContainer = styled.div`
   display: grid;

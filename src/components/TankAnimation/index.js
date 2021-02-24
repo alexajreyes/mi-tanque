@@ -9,7 +9,7 @@ export default function TankAnimation({ fuelHeight }) {
     <Wrapper>
       <FuelLevel>
         <FuelIcon size={32} />
-        <Typography variant="title2" value={`${fuelHeight}%`} />
+        <Typography mt="8px" variant="title2" value={`${fuelHeight}%`} />
       </FuelLevel>
       <Wave
         fuellevel={`${fuelHeight}%`}

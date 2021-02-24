@@ -19,7 +19,7 @@ export default function AppBar() {
     <Header>
       <Logo>
         <LogoIcon />
-        <Typography variant="title" value="Mi tanque" />
+        <Typography ml="8px" variant="title" value="Mi tanque" />
       </Logo>
 
       {isDarkModeActive ? (

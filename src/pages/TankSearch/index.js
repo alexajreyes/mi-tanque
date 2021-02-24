@@ -24,7 +24,12 @@ export default function TankSearch() {
     <Wrapper>
       <TextField placeholder="Buscar tanque" search={true} />
 
-      <Typography value="Seleccione su tanque" variant="title2" />
+      <Typography
+        mt="24px"
+        mb="8px"
+        value="Seleccione su tanque"
+        variant="title2"
+      />
       <ListOfTanks>
         {tanks &&
           tanks.map(tank => (

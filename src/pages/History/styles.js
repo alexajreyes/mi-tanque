@@ -19,7 +19,7 @@ export const Wrapper = styled.section`
 export const FilterContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 65px;
-  gap: 16px;
+  grid-gap: 16px;
 `
 
 export const IconContainer = styled.div`

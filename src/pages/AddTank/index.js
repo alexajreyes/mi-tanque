@@ -1,4 +1,10 @@
-import React, { useRef, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { useLocation } from 'wouter'
+import { AppContext } from 'store'
+import useTanks from 'hooks/useTanks'
+import { validationAlert, successAlert } from 'utils/alerts'
+
+//Import components
 import TextField from 'components/TextField'
 import Tank from 'components/Tank'
 import Button from 'components/Button'
@@ -6,20 +12,20 @@ import Button from 'components/Button'
 import { CgArrowsV as DiameterIcon } from 'react-icons/cg'
 import { CgArrowsH as LengthIcon } from 'react-icons/cg'
 import { Wrapper, Form, TankContainer, ButtonsContainer } from './styles'
-import { useLocation } from 'wouter'
-import useTanks from 'hooks/useTanks'
-import { AppContext } from 'store'
-import { validationAlert, successAlert } from 'utils/alerts'
 
 export default function AddTank() {
+  //Funcion que guarda el tanque por defecto
   const { addTankForDefault } = useContext(AppContext)
+  //Funcion para redireccionar a otras rutas
   const [_, setLocation] = useLocation()
   const { saveTank, doesThisTankExist } = useTanks()
-  const form = useRef(null)
-  const [capacity, setCapacity] = useState(0)
-  const [diameter, setDiameter] = useState(0)
-  const [length, setLength] = useState(0)
 
+  //Estados para gestionar los inputs del tanque
+  const [capacity, setCapacity] = useState('')
+  const [diameter, setDiameter] = useState('')
+  const [length, setLength] = useState('')
+
+  //Funcion que se ejecuta cuando se hace submit para guardar un nuevo tanque
   const handleSubmit = async event => {
     event.preventDefault()
 
@@ -43,9 +49,9 @@ export default function AddTank() {
 
     saveTank(tank, () => {
       //Limpiar campos
-      setCapacity(0)
-      setDiameter(0)
-      setLength(0)
+      setCapacity('')
+      setDiameter('')
+      setLength('')
       //Seleccionar tanque agregado como predeterminado
       addTankForDefault({ tank })
       successAlert('Tanque agregado correctamente')
@@ -54,15 +60,14 @@ export default function AddTank() {
     })
   }
 
-  const cancel = () => {
-    //Redireccionar a la home
-    setLocation('/tanques')
-  }
+  //Redireccionar a la home
+  const cancel = () => setLocation('/tanques')
 
   return (
     <Wrapper>
-      <Form ref={form} onSubmit={handleSubmit} id="formTank">
+      <Form onSubmit={handleSubmit} id="formTank">
         <TextField
+          mb="16px"
           type="number"
           label="Capacidad en galones de su tanque"
           placeholder="Ej. 100, 150, 200"
@@ -70,6 +75,7 @@ export default function AddTank() {
           onChange={e => setCapacity(e.target.value)}
         />
         <TextField
+          mb="16px"
           type="number"
           label="Diámetro en pulgadas de su tanque"
           placeholder="Ej. 100, 150, 200"
@@ -78,6 +84,7 @@ export default function AddTank() {
           onChange={e => setDiameter(e.target.value)}
         />
         <TextField
+          mb="16px"
           type="number"
           label="Longitud en pulgadas de su tanque"
           placeholder="Ej. 22, 23, 25"
@@ -96,7 +103,13 @@ export default function AddTank() {
       </TankContainer>
 
       <ButtonsContainer>
-        <Button variant="filled" size="large" type="submit" form="formTank">
+        <Button
+          mb="16px"
+          variant="filled"
+          size="large"
+          type="submit"
+          form="formTank"
+        >
           Guardar
         </Button>
         <Button variant="outline" size="large" onClick={cancel}>

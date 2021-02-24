@@ -22,9 +22,9 @@ export default function useTank() {
 
       const tankExist = tanks.some(tank => {
         return (
-          tank.capacity === Number(capacity) &&
-          tank.diameter === Number(diameter) &&
-          tank.length === Number(length)
+          Number(tank.capacity) === Number(capacity) &&
+          Number(tank.diameter) === Number(diameter) &&
+          Number(tank.length) === Number(length)
         )
       })
 

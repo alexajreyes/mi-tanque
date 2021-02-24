@@ -44,7 +44,6 @@ export const FuelLevel = styled.div`
   color: ${({ theme }) => theme.textSecondary};
   display: flex;
   flex-direction: column;
-  gap: 8px;
   margin-top: 20px;
   position: absolute;
   z-index: 99;
