@@ -11,7 +11,7 @@ import { AppContext } from 'store'
 export default function TankSearch() {
   const { addTankForDefault } = useContext(AppContext)
 
-  const { tanks } = useTanks()
+  const { tanks, keyword, updateKeyword, filteredTanks } = useTanks()
 
   const [_, setLocation] = useLocation()
 
@@ -22,7 +22,12 @@ export default function TankSearch() {
 
   return (
     <Wrapper>
-      <TextField placeholder="Buscar tanque" search={true} />
+      <TextField
+        value={keyword}
+        onChange={e => updateKeyword(e.target.value)}
+        placeholder="Buscar tanque"
+        search={true}
+      />
 
       <Typography
         mt="24px"
@@ -31,8 +36,8 @@ export default function TankSearch() {
         variant="title2"
       />
       <ListOfTanks>
-        {tanks &&
-          tanks.map(tank => (
+        {filteredTanks &&
+          filteredTanks.map(tank => (
             <CardOfTank
               key={tank.id}
               capacity={tank.capacity}

@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { createTank, readTanks } from 'services/tanks'
 
 export default function useTank() {
   const [tanks, setTanks] = useState(null)
+  const [keyword, setKeyword] = useState('')
+
+  const updateKeyword = _keyword => setKeyword(_keyword)
 
   const saveTank = (tank, onSave = () => {}) => {
     const { capacity, diameter, length } = tank
@@ -44,6 +47,19 @@ export default function useTank() {
       })
   }
 
+  const filteredTanks = useMemo(() => {
+    if (!tanks) return
+    if (!keyword) return tanks
+
+    return tanks.filter(tank => {
+      return (
+        String(tank.capacity).toLowerCase().includes(keyword.toLowerCase()) ||
+        String(tank.diameter).toLowerCase().includes(keyword.toLowerCase()) ||
+        String(tank.length).toLowerCase().includes(keyword.toLowerCase())
+      )
+    })
+  }, [tanks, keyword])
+
   const addPredefinedTanks = () => {
     saveTank({ capacity: 50, diameter: 25, length: 26 })
     saveTank({ capacity: 75, diameter: 24, length: 41 })
@@ -77,5 +93,12 @@ export default function useTank() {
     }
   }, [tanks])
 
-  return { tanks, saveTank, doesThisTankExist }
+  return {
+    tanks,
+    saveTank,
+    doesThisTankExist,
+    filteredTanks,
+    keyword,
+    updateKeyword,
+  }
 }
