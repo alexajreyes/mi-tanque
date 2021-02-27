@@ -1,6 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Title, Title2, Title3, Link, Link2, Body, Caption } from './styles'
+import {
+  Title,
+  Title2,
+  Title3,
+  Link,
+  Link2,
+  Body,
+  Caption,
+  Caption2,
+} from './styles'
 
 export default function Typography({
   value,
@@ -66,6 +75,19 @@ export default function Typography({
         >
           {value}
         </Caption>
+      )
+    case 'caption2':
+      return (
+        <Caption2
+          mt={mt}
+          mb={mb}
+          ml={ml}
+          mr={mr}
+          color={color}
+          onClick={onClick}
+        >
+          {value}
+        </Caption2>
       )
 
     default:
