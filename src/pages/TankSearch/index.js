@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useLocation } from 'wouter'
 import CardOfTank from 'components/CardOfTank'
 import Typography from 'components/Typography'
@@ -11,7 +11,7 @@ import { AppContext } from 'store'
 export default function TankSearch() {
   const { addTankForDefault } = useContext(AppContext)
 
-  const { tanks, keyword, updateKeyword, filteredTanks } = useTanks()
+  const { getTanks, keyword, updateKeyword, filteredTanks } = useTanks()
 
   const [_, setLocation] = useLocation()
 
@@ -19,6 +19,11 @@ export default function TankSearch() {
     addTankForDefault({ tank })
     setLocation('/')
   }
+
+  //Cargar los tanques al montar el componente
+  useEffect(() => {
+    getTanks()
+  }, [])
 
   return (
     <Wrapper>

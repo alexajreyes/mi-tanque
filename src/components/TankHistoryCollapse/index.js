@@ -3,16 +3,12 @@ import Typography from 'components/Typography'
 import React, { useState } from 'react'
 import { Wrapper, Header, List } from './styles'
 import CardHistory from 'components/CardHistory'
-
 import { IoIosArrowDown as ArrowDownIcon } from 'react-icons/io'
 import { IoIosArrowUp as ArrowUpIcon } from 'react-icons/io'
 
-function TankHistoryCollapse({
-  capacity = '100',
-  diameter = '25',
-  length = '48',
-}) {
+function TankHistoryCollapse({ tank, measurements }) {
   const [collapseIsactive, setCollapseIsactive] = useState(false)
+  const { capacity, length, diameter } = tank
 
   const toggleCollapse = () =>
     setCollapseIsactive(prevCollapse => !prevCollapse)
@@ -33,7 +29,11 @@ function TankHistoryCollapse({
       </Header>
       {collapseIsactive && (
         <List>
-          <CardHistory />
+          {measurements &&
+            measurements.length > 0 &&
+            measurements.map(measurement => (
+              <CardHistory key={measurement.id} measurement={measurement} />
+            ))}
         </List>
       )}
     </Wrapper>

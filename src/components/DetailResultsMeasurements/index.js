@@ -3,17 +3,28 @@ import Typography from 'components/Typography'
 import React from 'react'
 import { Wrapper, Results } from './styles'
 
-function DetailResultsMeasurements() {
+function DetailResultsMeasurements({ totalGallons, date }) {
+  const { start, end, consumed } = totalGallons
+  const { start: startDate, end: endDate } = date
+
   return (
     <Wrapper>
       <Typography value="Galones de combustible" variant="title3" />
       <Results>
-        <TextGroup label="Al iniciar" value="100gls" caption="2 feb. 2021" />
-        <TextGroup label="Al finalizar" value="50gls" caption="26 feb. 2021" />
+        <TextGroup
+          label="Al iniciar"
+          value={`${start} gls`}
+          caption={startDate}
+        />
+        <TextGroup
+          label="Al finalizar"
+          value={`${end} gls`}
+          caption={endDate}
+        />
         <TextGroup
           label="Consumidos"
-          value="50gls"
-          caption="Del 02/02/2021 al 26/02/2021"
+          value={`${consumed.toFixed(2)} gls`}
+          caption={`Del ${startDate} al ${endDate}`}
         />
       </Results>
     </Wrapper>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { createTank, readTanks } from 'services/tanks'
 
 export default function useTank() {
@@ -40,6 +40,13 @@ export default function useTank() {
   const getTanks = () => {
     readTanks()
       .then(tanks => {
+        //Agregar tanques predefinidos la primera vez que se cargue la aplicacion
+        if (Array.isArray(tanks)) {
+          if (tanks.length < 1) {
+            addPredefinedTanks()
+          }
+        }
+
         setTanks(tanks)
       })
       .catch(error => {
@@ -81,20 +88,8 @@ export default function useTank() {
     getTanks()
   }
 
-  useEffect(() => {
-    getTanks()
-  }, [])
-
-  useEffect(() => {
-    if (tanks) {
-      if (tanks.length < 1) {
-        addPredefinedTanks()
-      }
-    }
-  }, [tanks])
-
   return {
-    tanks,
+    getTanks,
     saveTank,
     doesThisTankExist,
     filteredTanks,

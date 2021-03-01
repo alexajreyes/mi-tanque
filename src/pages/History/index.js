@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react'
+import React, { useState, Suspense, useEffect } from 'react'
 import NavBar from 'components/NavBar'
 import TextField from 'components/TextField'
 import { format, addDays } from 'date-fns'
@@ -9,18 +9,21 @@ import { IoMdCalendar as CalendarIcon } from 'react-icons/io'
 import { Wrapper, Container, NavBarContainer } from './styles'
 import Typography from 'components/Typography'
 
+import useMeasurement from 'hooks/useMeasurement'
+
 function History() {
+  const DateModal = React.lazy(() => import('components/DateModal'))
+  const [calendarIsVisible, setCalendarIsVisible] = useState(false)
+
   const [date, setDate] = useState({
     start: format(addDays(new Date(), -7), 'dd MMM. yyyy'),
     end: format(new Date(), 'dd MMM. yyyy'),
   })
 
-  const DateModal = React.lazy(() => import('components/DateModal'))
-
-  const [calendarIsVisible, setCalendarIsVisible] = useState(false)
+  //Obtenemos la lista de mediciones
+  const { listOfTanks, totalGallons } = useMeasurement()
 
   const showCalendar = () => setCalendarIsVisible(true)
-
   const hideCalendar = () => setCalendarIsVisible(false)
 
   //Muestra la fecha seleccionada en la interfaz
@@ -45,16 +48,26 @@ function History() {
           placeholder="Buscar tanque"
           search={true}
         />
-        <DetailResultsMeasurements />
+
+        <DetailResultsMeasurements totalGallons={totalGallons} date={date} />
+
         <Typography
           mt="16px"
           variant="title2"
           value="Historial de mediciones"
         />
-        <TankHistoryCollapse />
-        <TankHistoryCollapse />
-        <TankHistoryCollapse />
-        <TankHistoryCollapse />
+
+        {listOfTanks &&
+          listOfTanks.length > 0 &&
+          listOfTanks.map(tank => {
+            return (
+              <TankHistoryCollapse
+                key={tank.tank.id}
+                tank={tank.tank}
+                measurements={tank.measurements}
+              />
+            )
+          })}
       </Wrapper>
       <NavBarContainer>
         <NavBar />

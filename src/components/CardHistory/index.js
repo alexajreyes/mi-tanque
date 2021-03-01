@@ -12,24 +12,31 @@ import {
 } from './styles'
 import { IoMdCalendar as CalendarIcon } from 'react-icons/io'
 import { IoMdPin as MarkerPin } from 'react-icons/io'
+import { formatDistanceToNow } from 'date-fns'
 
-function CardHistory({ date = '2 ene. 2021', address = 'Managua, Nicaragua' }) {
+function CardHistory({ measurement }) {
+  const { date, inches, gallons, liters, location } = measurement
+
   return (
     <Wrapper>
       <Header>
         <Text>
           <CalendarIcon />
-          <Typography ml="5px" variant="caption" value={date} />
+          <Typography
+            ml="5px"
+            variant="caption"
+            value={formatDistanceToNow(date)}
+          />
         </Text>
         <Text>
           <MarkerPin />
-          <Typography ml="5px" variant="caption" value={address} />
+          <Typography ml="5px" variant="caption" value={location} />
         </Text>
       </Header>
       <Results>
-        <TextGroup label="Pulgadas" value="8" />
-        <TextGroup label="Galones" value="100" />
-        <TextGroup label="Litros" value="250" />
+        <TextGroup label="Pulgadas" value={inches} />
+        <TextGroup label="Galones" value={gallons} />
+        <TextGroup label="Litros" value={liters} />
       </Results>
       <BarContainer>
         <Typography mr="5px" variant="caption" color="#00A8CC" value={'50%'} />

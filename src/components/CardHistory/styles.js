@@ -3,6 +3,7 @@ export const Wrapper = styled.article`
   background-color: ${({ theme }) => theme.card};
   padding: 16px;
   border-radius: 8px;
+  margin-bottom: 8px;
 `
 
 export const Header = styled.header`
