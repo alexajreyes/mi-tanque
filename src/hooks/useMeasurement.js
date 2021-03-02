@@ -84,7 +84,7 @@ export default function useMeasurement() {
   const getNameOfCity = async ({ latitude, longitude }) => {
     try {
       const response = await fetch(
-        `http://api.positionstack.com/v1/reverse?access_key=6cebb9c90343dbf90f74f045658a9a70&query=${latitude},${longitude}`
+        `https://api.positionstack.com/v1/reverse?access_key=6cebb9c90343dbf90f74f045658a9a70&query=${latitude},${longitude}`
       )
 
       const { data } = await response.json()
