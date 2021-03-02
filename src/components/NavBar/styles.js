@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
 const ActiveStyles = css`
-  background-color: rgba(0, 168, 204, 0.38);
+  //background-color: rgba(0, 168, 204, 0.38);
   color: ${({ theme }) => theme.accent};
 `
 

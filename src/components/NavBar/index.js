@@ -1,18 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { MdHistory as HistoryIcon } from 'react-icons/md'
 import { BiTachometer as MeterIcon } from 'react-icons/bi'
 import { useLocation } from 'wouter'
 import { Nav, NavItem } from './styles'
-import { useLocalStorage } from 'hooks/useLocalStorage'
 
 const Tabs = {
   HISTORY: 1,
   METER: 2,
 }
 
-export default function NavBar() {
-  const [tab, setTab] = useLocalStorage('tabSelected', Tabs.METER)
+export default function NavBar({ activeTab }) {
+  const [tab, setTab] = useState(activeTab)
   const [_, setLocation] = useLocation()
 
   const handleClickTab = _tab => {

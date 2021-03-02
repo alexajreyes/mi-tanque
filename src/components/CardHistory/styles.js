@@ -7,8 +7,10 @@ export const Wrapper = styled.article`
 `
 
 export const Header = styled.header`
-  display: flex;
-  justify-content: space-space-between;
+  display: grid;
+  grid-template-columns: min-content min-content;
+  grid-gap: 16px;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
 `
@@ -16,7 +18,7 @@ export const Text = styled.div`
   white-space: nowrap;
   width: 100%;
   display: flex;
-  justify-content: space-space-between;
+  justify-content: flex-end;
   align-items: flex-end;
 `
 export const Results = styled.div`
@@ -26,7 +28,7 @@ export const Results = styled.div`
 `
 
 export const BarContainer = styled.div`
-  margin-top: 8px;
+  margin-top: 16px;
   width: 100%;
   display: grid;
   white-space: nowrap;
@@ -40,7 +42,7 @@ export const Bar = styled.div`
   background-color: ${({ theme }) => theme.secondaryText};
 `
 export const BarProgress = styled.div`
-  width: 50%;
+  width: ${({ width }) => width};
   height: 3px;
   background-color: ${({ theme }) => theme.accent};
 `

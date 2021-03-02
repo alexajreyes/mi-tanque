@@ -55,7 +55,7 @@ export default function useTank() {
   }
 
   const filteredTanks = useMemo(() => {
-    if (!tanks) return
+    if (!tanks) return []
     if (!keyword) return tanks
 
     return tanks.filter(tank => {

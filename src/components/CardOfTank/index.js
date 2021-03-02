@@ -21,7 +21,7 @@ export default function CardOfTank({
   }, [windowWidth])
 
   return (
-    <Card>
+    <Card onClick={onClick}>
       <Tank capacity={capacity} diameter={diameter} length={length} />
 
       <div>
@@ -43,7 +43,7 @@ export default function CardOfTank({
           mb="8px"
         />
 
-        <Typography value={ctaText} variant="link2" onClick={onClick} />
+        <Typography value={ctaText} variant="link2" />
       </div>
     </Card>
   )

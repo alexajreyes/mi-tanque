@@ -71,10 +71,13 @@ export default function Home() {
           <TextGroup label="Galones" value={results.gallons} />
           <TextGroup label="Litros" value={results.liters} />
         </Results>
-        <TankAnimation fuelHeight={results.fuelHeight} />
+        <TankAnimation
+          fuelHeight={results.fuelHeight}
+          gallons={results.gallons}
+        />
       </Wrapper>
       <NavBarContainer>
-        <NavBar />
+        <NavBar activeTab={2} />
       </NavBarContainer>
     </Container>
   )

@@ -52,6 +52,9 @@ export default function TankSearch() {
               onClick={() => selectTank(tank)}
             />
           ))}
+        {filteredTanks.length === 0 && (
+          <Typography variant="body" value="No se encontraron tanques" />
+        )}
       </ListOfTanks>
       <LinkContainer>
         <Typography value="¿Tu tanque no aparece?" variant="title3" />
