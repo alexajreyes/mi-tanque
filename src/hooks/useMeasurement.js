@@ -84,12 +84,11 @@ export default function useMeasurement() {
   const getNameOfCity = async ({ latitude, longitude }) => {
     try {
       const response = await fetch(
-        `https://api.positionstack.com/v1/reverse?access_key=6cebb9c90343dbf90f74f045658a9a70&query=${latitude},${longitude}`
+        `https://app.geocodeapi.io/api/v1/reverse?point.lat=${latitude}&point.lon=${longitude}&apikey=6384fa00-7b09-11eb-b491-2511be64546d`
       )
 
-      const { data } = await response.json()
-
-      const location = data[0]
+      const data = await response.json()
+      const location = data?.features[0].properties
 
       return `${location.locality}, ${location.country}`
     } catch (error) {
